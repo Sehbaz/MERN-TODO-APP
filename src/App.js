@@ -5,12 +5,40 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CreateTodo from "./components/create-todo-component";
 import EditTodo from "./components/edit-todo-component";
 import TodosList from "./components/todos-list-component";
+import Logo from "./logo.png";
 function App() {
   return (
     <Router>
       {" "}
       <div className="container">
-        <h2>MERN-Stack Todo App</h2>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a
+            className="navbar-brand"
+            href="https://www.gooogle.com"
+            target="_blank"
+          >
+            <img src={Logo} width="30" height="30" alt="Brand Logo" />
+          </a>
+          <Link to="/" className="navbar-brand">
+            MERN_Stack Todo App
+          </Link>
+          <div className="collpase nav-collpase">
+            <ul className="navbar-nav mr-auto">
+              <li className="navbar-item">
+                <Link to="/" className="nav-link">
+                  Todos
+                </Link>
+              </li>
+              <li className="navbar-item">
+                <Link to="/create" className="nav-link">
+                  Create Todo
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" />
         <Route path="/" exact component={TodosList} />
         <Route path="/edit/:id" exact component={EditTodo} />
         <Route path="/create" exact component={CreateTodo} />
