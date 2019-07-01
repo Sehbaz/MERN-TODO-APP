@@ -4,9 +4,15 @@ import Axios from "axios";
 
 const Todo = props => (
   <tr>
-    <td>{props.todo.todo_description}</td>
-    <td>{props.todo.todo_responsible}</td>
-    <td>{props.todo.todo_priority}</td>
+    <td className={props.todo.todo_completed ? "completed" : ""}>
+      {props.todo.todo_description}
+    </td>
+    <td className={props.todo.todo_completed ? "completed" : ""}>
+      {props.todo.todo_responsible}
+    </td>
+    <td className={props.todo.todo_completed ? "completed" : ""}>
+      {props.todo.todo_priority}
+    </td>
     <td>
       <Link to={"/edit/" + props.todo._id}>Edit</Link>
     </td>
@@ -19,6 +25,11 @@ class TodosList extends Component {
     this.state = { todos: [] };
   }
   componentDidMount() {
+    Axios.get("http://localhost:4000/todos").then(response => {
+      this.setState({ todos: response.data });
+    });
+  }
+  componentDidUpdate(){
     Axios.get("http://localhost:4000/todos").then(response => {
       this.setState({ todos: response.data });
     });
